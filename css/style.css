@@ -38,10 +38,6 @@ ol, ul {
   list-style: none;
 }
 
-blockquote, q {
-  quotes: none;
-}
-
 /****** Main ********/
 body {
   color: white;
@@ -89,6 +85,21 @@ ALIGNMENT
   margin: 0 auto;
 }
 
+.vertical-center p.cta {
+  margin-top: 5px;
+}
+
+.vertical-center a:link,
+.vertical-center a:visited {
+  color: white;
+  text-decoration: none;
+  font-size: 0.6em;
+}
+
+.vertical-center a:hover {
+  text-decoration: underline;
+}
+
 /*-----------------------------------
 WEBSITE SECTIONS
 -----------------------------------*/
@@ -106,91 +117,203 @@ WEBSITE SECTIONS
 .panel2 {
   background: #64a0d4;
 }
-/*---  ---*/
+/*--- Contact ---*/
 .panel3 {
   background: #e14456;
 }
-
+/*-- Footer --*/
 .panel4 {
-  background: grey;
+  background: #232323;
 }
 
 /*-----------------------------------
-NAVIGATION
+STARTSCREEN
 -----------------------------------*/
 
-.fix-bar {
-  position: fixed;
-  top: 0;
+#title{
+  text-align: center;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  height: 50px;
-  line-height: 50px;
-  z-index: 9;
+  top: 40%;
+  color: white;
+  font-size: 3em;
+  position: fixed;
+  z-index: 10;
+  font-weight: 900;
+  text-transform: uppercase;
 }
-.fix-bar ul {
-  text-align: right;
-  position: relative;
-  z-index: 99;
-}
-.fix-bar ul li {
-  display: inline-block;
-}
-.fix-bar ul li a {
-  text-decoration: none;
-  color: #FFF;
-  font-size: 15px;
-  display: inline-block;
-  height: 50px;
-  padding: 0 25px;
-}
-.fix-bar ul li a:after {
-  content: none;
+#triangle-up {
+  width: 0;
+  height: 0;
+  border-left: 100vw solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 100vh solid #651010;
+  transition: 2s ease-in-out;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
 }
 
-.pagination a {
-  height: 20px;
-  margin-bottom: 5px;
+#triangle-down {
+  width: 0;
+  height: 0;
+  border-left: 0 solid transparent;
+  border-right: 100vw solid transparent;
+  border-top: 100vh solid #696969;
+  transition: 1s ease-in-out;
+  float: left;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+}
+
+#triangle-down.usenand {
+  border-left: 0 solid transparent;
+  border-right: 0 solid transparent;
+  border-top: 100vh solid #696969;
+  transition: 1.5s ease-in-out;
+}
+
+#triangle-up.usenand {
+  border-left: 0 solid transparent;
+  border-right: 0 solid transparent;
+  border-bottom: 100vh solid #651010;
+  transition: 1.5s ease-in-out;
+}
+
+.krassInefade {
+  transform: perspective(900px) translateZ(0px);
+  opacity: 1;
+  transition: 1s ease-out;
+}
+
+/*-----------------------------------
+MENU
+-----------------------------------*/
+#menuContent {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: none;
+  text-align: center;
+  z-index: 3;
+}
+
+#menuContent ul, #menuContent a {
+  font-size: 3em;
+  font-weight: 500;
+  height: 100%;
   color: white;
-  position: relative;
-  padding: 4px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+  text-decoration:none;
+  transition:.1s ease-in-out;
+}
+
+#menuContent a:hover{
+  opacity:0.8;
+  transition:.2s ease-in-out;
+}
+
+#menuContent li {
+  margin-bottom: 20px;
+  animation: itemsInefade 1s forwards;
+  opacity: 0;
+}
+
+#menuContent li:nth-child(2) {
+  animation-delay: .2s
+}
+#menuContent li:nth-child(3) {
+  animation-delay: .4s
+}
+#menuContent li:nth-child(4) {
+  animation-delay: .6s
+}
+
+#menuContent #menuClose {
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  color: white;
+  font-size:2em;
+  transition:.2s ease-in-out;
+  cursor: pointer;
+}
+
+#menuContent #menuClose:hover{
+  opacity:0.8;
+  transition:.2s ease-in-out;
+}
+
+#menu.toMenu {
+  left: 80px;
+  bottom: 80px;
+  background-color: #651010;
+  opacity: 1;
+  width: 9vh;
+  height: 9vh;
+  transition: 1.5s ease-in-out;
+  border: 0 solid white;
+  border-radius: 50%;
+}
+
+#menu.menuTransition {
+  width: 100%;
+  height: 100%;
+  opacity: 0.95;
+  border-radius: 0;
+  bottom: 0;
+  left: 0;
+  transition: .5s ease-in-out;
+}
+
+/*-----------------------------------
+MENU BUTTON
+-----------------------------------*/
+
+#button,
+#menu {
+  position: fixed;
+  z-index: 2;
+  opacity: 1;
+  width: 9vh;
+  height: 9vh;
+  bottom: 100px;
+  left: calc(50% - 5.5vh);
+  background-color: #696969;
+  border: none;
+  border-radius: 50%;
+  font-family: 'Raleway', sans-serif;
+  color: white;
+  font-size: 2em;
+  transition: .3s ease-in-out;
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.5);
+}
+
+#button:focus,
+#menu:focus {
+  outline: 0;
+}
+
+#button:hover {
+  transform: scale(1.2);
+}
+
+#button:active {
+  transform: scale(1.1);
 }
 
 .pagination {
-  position: fixed;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.4em;
-  z-index: 10;
-}
-
-.pagination a {
-  display: none;
-}
-
-/*-----------------------------------
-CENTER ALIGN
------------------------------------*/
-
-.vertical-center p.cta {
-  margin-top: 5px;
-}
-
-.vertical-center a:link,
-.vertical-center a:visited {
-  color: white;
-  text-decoration: none;
-  font-size: 0.6em;
-}
-
-.vertical-center a:hover {
-  text-decoration: underline;
-}
-
-.arrow {
-  position: relative;
-  padding-right: 15px;
+    visibility: hidden;
 }
 
 /*-----------------------------------
@@ -209,4 +332,23 @@ CENTER ALIGN
   .inner {
     width: 70%;
   }
+}
+
+@keyframes itemsInefade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/*-----------------------------------
+Style ideas
+-----------------------------------*/
+
+li {
+  font-size: 0.6em;
+  font-weight: 500;
+  list-style-type:none;
 }
